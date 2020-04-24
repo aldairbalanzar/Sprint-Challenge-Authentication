@@ -9,8 +9,8 @@ describe('server', () => {
     
     describe('POST /auth/register', () => {
         it('status returns 201', () => {
-            return request(server)
-            .post('api/auth/register')
+            request(server)
+            .post('/register')
             .send(user)
             .then(res => {
                 console.log('201 TEST', res.status)
@@ -18,14 +18,14 @@ describe('server', () => {
             })
         });
 
-        // it('returns message', () => {
-        //     return request(server)
-        //     .post('/api/auth/register')
-        //     .send(user)
-        //     .then(res => {
-        //         console.log('MESSAGE TEST: ', res.body)
-        //         expect(res.body.message).toBe('user registered')
-        //     })
-        // })
+        it('returns message', () => {
+            request(server)
+            .post('/api/auth/register')
+            .send(user)
+            .then(res => {
+                console.log('MESSAGE TEST: ', res.body)
+                expect(res.body.message).toBe('user registered')
+            })
+        })
     })
 })
